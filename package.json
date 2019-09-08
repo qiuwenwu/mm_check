@@ -1,0 +1,36 @@
+{
+  "name": "mm_check",
+  "version": "1.2.2",
+  "description": "这是超级美眉check参数验证模块，用于验证参数是否正确",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qiuwenwu/mm_check.git"
+  },
+  "keywords": [
+    "mycheck",
+    "async",
+    "await",
+    "promise",
+    "add",
+    "del",
+    "set",
+    "get",
+    "query",
+    "run",
+    "exec"
+  ],
+  "author": "邱文武",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/qiuwenwu/mm_check/issues"
+  },
+  "homepage": "https://github.com/qiuwenwu/mm_check#readme",
+  "dependencies": {
+    "mm_expand": "^1.2.2"
+  },
+  "devDependencies": {}
+}
