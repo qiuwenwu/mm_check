@@ -304,4 +304,8 @@ Check.prototype.run = function(value) {
 	return msg;
 };
 
-exports.Check = Check;
+if (global.$) {
+	$.Check = Check;
+}
+
+module.exports = Check;
