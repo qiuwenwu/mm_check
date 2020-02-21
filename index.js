@@ -55,63 +55,63 @@ class Check {
 		/**
 		 * 校验参数
 		 */
-		this.param = {
-			// 参数名
-			"name": "",
-			// 参数介绍名
-			"title": "",
-			// 分隔符号, 用于查询时判断多个传参
-			"splitter": "|",
-			// 参数类型 string字符串、number数字、bool布尔、dateTime时间、object对象类型、array数组类型
-			"type": "string",
-			/* 字符串相关验证 */
-			"string": {
-				// 非空
-				"notEmpty": false,
-				// 最小长度
-				"min": 0,
-				// 最大长度
-				"max": 0,
-				// 验证字符串范围, 传入两个成员, 最小长度和最大长度。例如：[0, 0]
-				"range": [],
-				// 验证正则表达式
-				"regex": "",
-				// 验证与某个参数值是否相同
-				"identical": "",
-				// 验证与某个参数值是否不同
-				"different": "",
-				// 后缀名, 多个后缀名用“|”分隔
-				"extension": "",
-				// 格式验证 email、url、date、dateISO、number、digits、phone
-				"format": ""
-			},
-			/* 数值相关验证 */
-			"number": {
-				// 最小值
-				"min": 0,
-				// 最大值
-				"max": 0,
-				// 验证字符串范围
-				"range": []
-			},
-			/* 数组相关验证 */
-			"array": {
-				// 最小成员数
-				"min": 0,
-				// 最大成员数
-				"max": 0,
-				// 验证成员范围
-				"range": [],
-				// 成员类型, string类型, number数值类型, object对象类型
-				"type": "",
-				// 字典验证
-				"param": []
-			},
-			/* 字典相关验证 */
+		// 参数名
+		this.name = "";
+		// 参数介绍名
+		this.title = "";
+		// 分隔符号, 用于查询时判断多个传参
+		this.splitter = "|";
+		// 参数类型 string字符串、number数字、bool布尔、dateTime时间、object对象类型、array数组类型
+		this.type = "string";
+
+		this.string = {
+			// 非空
+			"notEmpty": false,
+			// 最小长度
+			"min": 0,
+			// 最大长度
+			"max": 0,
+			// 验证字符串范围, 传入两个成员, 最小长度和最大长度。例如：[0, 0]
+			"range": [],
+			// 验证正则表达式
+			"regex": "",
+			// 验证与某个参数值是否相同
+			"identical": "",
+			// 验证与某个参数值是否不同
+			"different": "",
+			// 后缀名, 多个后缀名用“|”分隔
+			"extension": "",
+			// 格式验证 email、url、date、dateISO、number、digits、phone
+			"format": ""
+		};
+
+		/* 数值相关验证 */
+		this.number = {
+			// 最小值
+			"min": 0,
+			// 最大值
+			"max": 0,
+			// 验证字符串范围
+			"range": []
+		};
+		/* 数组相关验证 */
+		this.array = {
+			// 最小成员数
+			"min": 0,
+			// 最大成员数
+			"max": 0,
+			// 验证成员范围
+			"range": [],
+			// 成员类型, string类型, number数值类型, object对象类型
+			"type": "",
+			// 字典验证
 			"object": []
-		}
+		};
+		/* 字典相关验证 */
+		this.object = [];
+
 		if (param) {
-			$.push(this.param, param, true);
+			$.push(this, param, true);
 		}
 	}
 }
@@ -140,11 +140,6 @@ Check.prototype.msg = function(key, v1, v2) {
 	var str = lang[key];
 	if (str) {
 		return str.replace('{0}', v1).replace('{1}', v2);
-		// var arr = Array.prototype.slice.call(args)
-		// for(var i = 0; i < arr.length; i++){
-		// 	str = str.replace(`${i}`, arr[i]);
-		// }
-		// return str
 	} else {
 		return "参数不正确!";
 	}
@@ -225,6 +220,9 @@ Check.prototype.check_object = function(value, cg) {
  * @return {String} 没通过返回信息,否则返回空
  */
 Check.prototype.check_string_range = function(value, cg) {
+	if(!cg){
+		return null;
+	}
 	var len = value.length;
 	var range = cg.range;
 	if (range.length === 2) {
@@ -248,6 +246,9 @@ Check.prototype.check_string_range = function(value, cg) {
  * @return {String} 没通过返回信息,否则返回空
  */
 Check.prototype.check_extension = function(value, cg) {
+	if(!cg){
+		return null;
+	}
 	var ex = cg.extension;
 	if (ex) {
 		var arr = ex.split('|');
@@ -273,6 +274,9 @@ Check.prototype.check_extension = function(value, cg) {
  * @return {String} 没通过返回信息,否则返回空
  */
 Check.prototype.check_string_regex = function(value, cg) {
+	if(!cg){
+		return null;
+	}
 	var rx = cg.regex;
 	if (rx && !value.regex(rx)) {
 		return this.msg('regex', rx);
@@ -286,6 +290,9 @@ Check.prototype.check_string_regex = function(value, cg) {
  * @return {String} 没通过返回信息, 否则返回空
  */
 Check.prototype.check_string_format = function(value, cg) {
+	if(!cg){
+		return null;
+	}
 	var fmt = cg.format;
 	if (fmt) {
 		var bl = value.checkFormat(fmt);
@@ -336,11 +343,12 @@ Check.prototype.msg_head = function(cg) {
  */
 Check.prototype.run = function(value, cg) {
 	if (!cg) {
-		cg = this.param;
+		cg = this;
 	}
 	var msg = null;
-	if (value) {
-		var type = cg.type;
+	
+	var type = cg.type;
+	if (value && type) {
 		var p = typeof(value);
 		if (type !== p) {
 			if (type === 'number') {
