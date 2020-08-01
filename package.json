@@ -1,32 +1,32 @@
 {
-  "name": "mm_check",
-  "version": "1.3.4",
-  "description": "这是超级美眉check参数验证模块，用于验证参数是否正确",
-  "main": "index.js",
-  "scripts": {
-    "test": "node test.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/qiuwenwu/mm_check.git"
-  },
-  "keywords": [
-    "check",
-    "http",
-    "api",
-    "model",
-    "data",
-    "query",
-    "body"
-  ],
-  "author": "邱文武",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/qiuwenwu/mm_check/issues"
-  },
-  "homepage": "https://github.com/qiuwenwu/mm_check#readme",
-  "dependencies": {
-    "mm_expand": "^1.3.9"
-  },
-  "devDependencies": {}
+    "name": "mm_check",
+    "version": "1.3.6",
+    "description": "这是超级美眉check参数验证模块，用于验证参数是否正确",
+    "main": "index.js",
+    "scripts": {
+        "test": "node test.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/qiuwenwu/mm_check.git"
+    },
+    "keywords": [
+        "check",
+        "http",
+        "api",
+        "model",
+        "data",
+        "query",
+        "body"
+    ],
+    "author": "邱文武",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/qiuwenwu/mm_check/issues"
+    },
+    "homepage": "https://github.com/qiuwenwu/mm_check#readme",
+    "dependencies": {
+        "mm_expand": "^1.4.3"
+    },
+    "devDependencies": {}
 }
