@@ -348,7 +348,7 @@ Check.prototype.run = function(value, cg) {
 	var msg = null;
 	
 	var type = cg.type;
-	if (value && type) {
+	if (value !== null && type) {
 		var p = typeof(value);
 		if (type !== p) {
 			if (type === 'number') {

@@ -22,35 +22,50 @@ const Check = require('./index.js');
 // 	console.log(msg);
 // }
 
+// async function test() {
+// 	var config = {
+// 		title: "点赞",
+// 		name: "zan",
+// 		type: "array",
+// 		array: {
+// 			type: "object",
+// 			object: [{
+// 				title: "数量",
+// 				name: "num",
+// 				type: "object",
+// 				number: {
+// 					range: [3, 10]
+// 				}
+// 			}]
+// 		}
+// 	};
+// 	var ck = new Check(config);
+// 	// msg = ck.run([1, 2]);
+// 	// console.log(msg);
+// 	// var msg = ck.run(["成员1", "成员2"]);
+// 	var msg = ck.run([{
+// 		num: "成员1"
+// 	}, {
+// 		num: "成员2"
+// 	}]);
+// 	console.log(msg);
+// }
+
 async function test() {
 	var config = {
-		title: "点赞",
-		name: "zan",
-		type: "array",
-		array: {
-			type: "object",
-			object: [{
-				title: "数量",
-				name: "num",
-				type: "object",
-				number: {
-					range: [3, 10]
-				}
-			}]
-		}
-	};
+	    "name": "name",
+	    "title": "名称",
+	    "description": "",
+	    "type": "string",
+	    "dataType": "varchar",
+	    "string": {
+	        "notEmpty": true
+	    }
+	}
 	var ck = new Check(config);
-	// msg = ck.run([1, 2]);
-	// console.log(msg);
-	// var msg = ck.run(["成员1", "成员2"]);
-	var msg = ck.run([{
-		num: "成员1"
-	}, {
-		num: "成员2"
-	}]);
+	var msg = ck.run("");
 	console.log(msg);
 }
-
 
 // async function test() {
 // 	var config = {
