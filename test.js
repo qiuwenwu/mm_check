@@ -1,5 +1,16 @@
 const Check = require('./index.js');
 
+async function test() {
+	var config = {
+		type: "string",
+		string: {
+			format: "url"
+		}
+	}
+	var ck = new Check(config);
+	var msg = ck.run("/123123");
+	console.log(msg);
+}
 // async function test() {
 // 	var config = {
 // 		required: "all",
@@ -51,21 +62,21 @@ const Check = require('./index.js');
 // 	console.log(msg);
 // }
 
-async function test() {
-	var config = {
-	    "name": "name",
-	    "title": "名称",
-	    "description": "",
-	    "type": "string",
-	    "dataType": "varchar",
-	    "string": {
-	        "notEmpty": true
-	    }
-	}
-	var ck = new Check(config);
-	var msg = ck.run("");
-	console.log(msg);
-}
+// async function test() {
+// 	var config = {
+// 	    "name": "name",
+// 	    "title": "名称",
+// 	    "description": "",
+// 	    "type": "string",
+// 	    "dataType": "varchar",
+// 	    "string": {
+// 	        "notEmpty": true
+// 	    }
+// 	}
+// 	var ck = new Check(config);
+// 	var msg = ck.run("");
+// 	console.log(msg);
+// }
 
 // async function test() {
 // 	var config = {

@@ -220,7 +220,7 @@ Check.prototype.check_object = function(value, cg) {
  * @return {String} 没通过返回信息,否则返回空
  */
 Check.prototype.check_string_range = function(value, cg) {
-	if(!cg){
+	if (!cg) {
 		return null;
 	}
 	var len = value.length;
@@ -246,7 +246,7 @@ Check.prototype.check_string_range = function(value, cg) {
  * @return {String} 没通过返回信息,否则返回空
  */
 Check.prototype.check_extension = function(value, cg) {
-	if(!cg){
+	if (!cg) {
 		return null;
 	}
 	var ex = cg.extension;
@@ -274,7 +274,7 @@ Check.prototype.check_extension = function(value, cg) {
  * @return {String} 没通过返回信息,否则返回空
  */
 Check.prototype.check_string_regex = function(value, cg) {
-	if(!cg){
+	if (!cg) {
 		return null;
 	}
 	var rx = cg.regex;
@@ -290,12 +290,17 @@ Check.prototype.check_string_regex = function(value, cg) {
  * @return {String} 没通过返回信息, 否则返回空
  */
 Check.prototype.check_string_format = function(value, cg) {
-	if(!cg){
+	if (!cg) {
 		return null;
 	}
 	var fmt = cg.format;
 	if (fmt) {
-		var bl = value.checkFormat(fmt);
+		var bl;
+		if (fmt === 'url' && value.indexOf('/') === 0) {
+			bl = ("http://mm.elins.cn" + value).checkFormat(fmt);
+		} else {
+			bl = value.checkFormat(fmt);
+		}
 		if (!bl) {
 			return this.msg(fmt);
 		}
@@ -346,7 +351,7 @@ Check.prototype.run = function(value, cg) {
 		cg = this;
 	}
 	var msg = null;
-	
+
 	var type = cg.type;
 	if (value !== null && type) {
 		var p = typeof(value);
