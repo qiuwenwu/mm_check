@@ -6,7 +6,12 @@
 require('mm_expand');
 
 // 语言包
-var lang = {
+if($.lang.now === "chinese"){
+	delete $.lang.chinese;
+	delete $.lang.english;
+	$.lang.now = "zh_cn";
+}
+$.lang[$.lang.now] = {
 	type: "数据类型不正确, 应为{0}型",
 	notEmpty: "不能为空",
 	required: "是必填字段",
@@ -123,9 +128,9 @@ class Check {
  */
 Check.prototype.lang = function(obj) {
 	if (obj) {
-		$.push(lang, obj, true);
+		$.push($.lang[$.lang.now], obj, true);
 	} else {
-		return lang;
+		return $.lang[$.lang.now];
 	}
 };
 
@@ -137,7 +142,7 @@ Check.prototype.lang = function(obj) {
  * @return {String} 返回错误语句
  */
 Check.prototype.msg = function(key, v1, v2) {
-	var str = lang[key];
+	var str = $.lang[$.lang.now][key];
 	if (str) {
 		return str.replace('{0}', v1).replace('{1}', v2);
 	} else {

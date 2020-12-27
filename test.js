@@ -8,7 +8,7 @@ async function test() {
 		}
 	}
 	var ck = new Check(config);
-	var msg = ck.run("/123123");
+	var msg = ck.run("123123/123123");
 	console.log(msg);
 }
 // async function test() {
