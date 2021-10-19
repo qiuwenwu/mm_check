@@ -1,6 +1,6 @@
 {
     "name": "mm_check",
-    "version": "1.4.2",
+    "version": "1.4.3",
     "description": "这是超级美眉check参数验证模块，用于验证参数是否正确",
     "main": "index.js",
     "scripts": {
