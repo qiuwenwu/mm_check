@@ -6,7 +6,7 @@
 require('mm_expand');
 
 // 语言包
-if($.lang.now === "chinese"){
+if ($.lang.now === "chinese") {
 	delete $.lang.chinese;
 	delete $.lang.english;
 	$.lang.now = "zh_cn";
@@ -114,6 +114,9 @@ class Check {
 		};
 		/* 字典相关验证 */
 		this.object = [];
+
+		/* 默认值 */
+		this.default = "";
 
 		if (param) {
 			$.push(this, param, true);
